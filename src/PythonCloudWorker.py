@@ -13,7 +13,7 @@ from pyzeebe import ZeebeWorker, Job, create_camunda_cloud_channel
 # export ZEEBE_CLIENT_ID='yyyyyyyyy'
 # export ZEEBE_CLIENT_SECRET='zzzzzzzzzzz'
 # export ZEEBE_AUTHORIZATION_SERVER_URL='https://login.cloud.camunda.io/oauth/token'
-"""
+
 
 zeebe_client_id = os.environ.get('ZEEBE_CLIENT_ID')
 assert zeebe_client_id
@@ -24,12 +24,15 @@ assert zeebe_client_secret
 zeebe_address = os.environ.get('ZEEBE_ADDRESS')
 assert zeebe_address
 
+camunda_region = os.environ.get('CAMUNDA_CLUSTER_REGION')
+assert camunda_region
+
 match = re.search(r'(?P<cluster_id>[^\.]*)\..*', zeebe_address)
 camundacloud_cluster_id = match.group('cluster_id')
 assert camundacloud_cluster_id
 
 channel = create_camunda_cloud_channel(client_id=zeebe_client_id, client_secret=zeebe_client_secret,
-                                       cluster_id=camundacloud_cluster_id)
+                                       cluster_id=camundacloud_cluster_id, region=camunda_region)
 worker = ZeebeWorker(channel)  # Create a zeebe worker
 
 
@@ -38,26 +41,14 @@ async def on_error(exception: Exception, job: Job):
     await job.set_error_status(f"Failed to handle job {job}. Error: {str(exception)}")
 
 
-@worker.task(task_type="notify_person_to_quarantine", exception_handler=on_error)
-def notify_person_to_quarantine(quarantine_duration: str) -> dict:
-    print(f"You're sick! Stay in for {quarantine_duration}!")
-    return {"output": f"You're sick! Stay in for {quarantine_duration}!"}
-
-
-@worker.task(task_type="generate_certificate_of_recovery", exception_handler=on_error)
-async def generate_certificate_of_recovery(person_uuid: str) -> dict:  # Tasks can also be async
-    print(f"Dear {person_uuid}, you are fully recovered!")
-    return {"certificate": f"Dear {person_uuid}, you are fully recovered!"}
-
-
-@worker.task(task_type="send_certificate_of_recovery", exception_handler=on_error)
-async def generate_certificate_of_recovery(certificate: str) -> dict:  # Tasks can also be async
-    print(f"New certificate: {certificate}")
+@worker.task(task_type="send_request_to_procurement_department", exception_handler=on_error)
+def send_request_to_procurement_department(department: str) -> dict:
+    print(f"Sending procurement request from {department}!")
+    return {"output": f"Sending procurement request from {department}!"}
 
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(worker.work())
 
-"""
 
 

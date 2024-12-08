@@ -48,18 +48,24 @@ def send_request_to_procurement_department(department: str) -> dict:
 
 
 @worker.task(task_type="submit_budget_increase_request", exception_handler=on_error)
-def submit_budget_increase_request(budget: str) -> dict:
-    print(f"Budget is not sufficient! Current budget is {budget}")
-    # print(f"Submit request to increase the current budget by {requestedIncreaseAmount}!")
-    return {"output": f"Current budget: {budget}"}
+def submit_budget_increase_request(budget: str, requestedIncreaseAmount: str) -> dict:
+    print(f"Budget is not sufficient! Current budget is {budget}.")
+    print(f"Submit request to increase the current budget by {requestedIncreaseAmount}!")
+    print(f"New requested budget is: {budget + requestedIncreaseAmount}.")
+    return {"output": f"New requested budget is: {budget + requestedIncreaseAmount}."}
 
-'''
 @worker.task(task_type="approve_request", exception_handler=on_error)
 def approve_request(requestedIncreaseAmount: str, budget: str) -> dict:
-    print(f"New budget is {budget + requestedIncreaseAmount}")
-    # print(f"Submit request to increase the current budget by {requestedIncreaseAmount}!")
-    return {"output": f"New budget: {budget + requestedIncreaseAmount}"}
-'''
+    print(f"Budget increase of {requestedIncreaseAmount} is approved.")
+    print(f"New budget is: {budget + requestedIncreaseAmount}.")
+    return {"output": f"New budget is: {budget + requestedIncreaseAmount}."}
+    
+    
+@worker.task(task_type="reject_request", exception_handler=on_error)
+def reject_request(requestedIncreaseAmount: str, budget: str) -> dict:
+    print(f"Budget increase by {requestedIncreaseAmount} is not approved.")
+    print(f"Budget stays at old amount of {budget}.")
+    return {"output": f"Budget stays at old amount of {budget}."}
 
 
 loop = asyncio.get_event_loop()

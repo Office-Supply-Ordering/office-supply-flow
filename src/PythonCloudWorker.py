@@ -47,8 +47,20 @@ def send_request_to_procurement_department(department: str) -> dict:
     return {"output": f"Sending procurement request from {department}!"}
 
 
+@worker.task(task_type="submit_budget_increase_request", exception_handler=on_error)
+def submit_budget_increase_request(budget: str) -> dict:
+    print(f"Budget is not sufficient! Current budget is {budget}")
+    # print(f"Submit request to increase the current budget by {requestedIncreaseAmount}!")
+    return {"output": f"Current budget: {budget}"}
+
+'''
+@worker.task(task_type="approve_request", exception_handler=on_error)
+def approve_request(requestedIncreaseAmount: str, budget: str) -> dict:
+    print(f"New budget is {budget + requestedIncreaseAmount}")
+    # print(f"Submit request to increase the current budget by {requestedIncreaseAmount}!")
+    return {"output": f"New budget: {budget + requestedIncreaseAmount}"}
+'''
+
+
 loop = asyncio.get_event_loop()
 loop.run_until_complete(worker.work())
-
-
-

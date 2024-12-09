@@ -1,6 +1,8 @@
 import asyncio
 import os
+import random
 import re
+import string
 
 from pyzeebe import ZeebeWorker, Job, create_camunda_cloud_channel
 
@@ -48,7 +50,9 @@ def send_request_to_procurement_department(department: str) -> dict:
     print(f"{department.upper()}")
 
     print("Sending procurement request to Procurement Department.")
-    return {"output": "Sending procurement request to Procurement Department."}
+
+    request_id = generate_request_id()
+    return {"requestId": request_id}
 
 
 # PROCUREMENT DEPARTMENT TASKS
@@ -82,6 +86,11 @@ def reject_request(requestedIncreaseAmount: int, budget: int) -> dict:
     print(f"Budget increase by {requestedIncreaseAmount} is not approved.")
     print(f"Budget stays at old amount of {budget}.")
     return {"output": f"Budget stays at old amount of {budget}."}
+
+
+def generate_request_id() -> str:
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for _ in range(10))
 
 
 loop = asyncio.get_event_loop()

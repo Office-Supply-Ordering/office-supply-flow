@@ -49,9 +49,8 @@ def send_request_to_procurement_department(department: str) -> dict:
     print("--------------------------")
     print(f"{department.upper()}")
 
-    print("Sending procurement request to Procurement Department.")
-
     request_id = generate_request_id()
+    print(f"Sending procurement request '{request_id}' to Procurement Department.")
     return {"requestId": request_id}
 
 

@@ -41,28 +41,44 @@ async def on_error(exception: Exception, job: Job):
     await job.set_error_status(f"Failed to handle job {job}. Error: {str(exception)}")
 
 
+# OTHER DEPARTMENT TASKS
 @worker.task(task_type="send_request_to_procurement_department", exception_handler=on_error)
 def send_request_to_procurement_department(department: str) -> dict:
-    print(f"Sending procurement request from {department}!")
-    return {"output": f"Sending procurement request from {department}!"}
+    print("--------------------------")
+    print(f"{department.upper()}")
+
+    print("Sending procurement request to Procurement Department.")
+    return {"output": "Sending procurement request to Procurement Department."}
 
 
+# PROCUREMENT DEPARTMENT TASKS
 @worker.task(task_type="submit_budget_increase_request", exception_handler=on_error)
-def submit_budget_increase_request(budget: str, requestedIncreaseAmount: str) -> dict:
-    print(f"Budget is not sufficient! Current budget is {budget}.")
-    print(f"Submit request to increase the current budget by {requestedIncreaseAmount}!")
-    print(f"New requested budget is: {budget + requestedIncreaseAmount}.")
-    return {"output": f"New requested budget is: {budget + requestedIncreaseAmount}."}
+def submit_budget_increase_request(budget: int, costs: int) -> dict:
+    print("--------------------------")
+    print("PROCUREMENT DEPARTMENT")
 
+    print(f"Budget is not sufficient! Current budget is {budget} and the costs are {costs}!")
+    requested_increase_amount = costs - budget
+    print(f"Submit request to increase the current budget by {requested_increase_amount}!")
+    return {"requestedIncreaseAmount": requested_increase_amount}
+
+
+# FINANCIAL DEPARTMENT TASKS
 @worker.task(task_type="approve_request", exception_handler=on_error)
-def approve_request(requestedIncreaseAmount: str, budget: str) -> dict:
+def approve_request(requestedIncreaseAmount: int, budget: int) -> dict:
+    print("--------------------------")
+    print("FINANCIAL DEPARTMENT")
+
     print(f"Budget increase of {requestedIncreaseAmount} is approved.")
     print(f"New budget is: {budget + requestedIncreaseAmount}.")
     return {"output": f"New budget is: {budget + requestedIncreaseAmount}."}
-    
-    
+
+
 @worker.task(task_type="reject_request", exception_handler=on_error)
-def reject_request(requestedIncreaseAmount: str, budget: str) -> dict:
+def reject_request(requestedIncreaseAmount: int, budget: int) -> dict:
+    print("--------------------------")
+    print("FINANCIAL DEPARTMENT")
+
     print(f"Budget increase by {requestedIncreaseAmount} is not approved.")
     print(f"Budget stays at old amount of {budget}.")
     return {"output": f"Budget stays at old amount of {budget}."}

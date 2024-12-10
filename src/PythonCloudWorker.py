@@ -66,11 +66,11 @@ def submit_budget_increase_request(budget: int, costs: int) -> dict:
     return {"requestedIncreaseAmount": requested_increase_amount}
 
 @worker.task(task_type="emit_purchase_order", exception_handler=on_error)
-def emit_purchase_order(budget: int, requestId: str) -> dict:
+def emit_purchase_order(requestId: str) -> dict:
     print("--------------------------")
     print("PROCUREMENT DEPARTMENT")
 
-    print(f"Emitting purchase order {requestId} totaling {budget} to supplier.")
+    print(f"Emitting purchase order {requestId} to supplier.")
     return {"output": f"Purchase order is emitted."}
 
 

@@ -37,4 +37,4 @@ export ZEEBE_AUTHORIZATION_SERVER_URL='https://login.cloud.camunda.io/oauth/toke
 
 ## Process Model
 
-A running example of the process is available in the ‘Process Model’ directory of our GitHub repository. This directory also includes our BPMN model, along with all forms and DMN diagrams.
+A running example of the process is available in the ‘Process Model’ directory of our GitHub repository. This directory also includes our BPMN model, along with all forms and DMN diagrams as well as screen recordings of the automation in Camunda in action.

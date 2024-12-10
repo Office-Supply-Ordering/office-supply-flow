@@ -62,8 +62,8 @@ def submit_budget_increase_request(budget: int, costs: int) -> dict:
     print("--------------------------")
     print("PROCUREMENT DEPARTMENT")
 
-    print(f"Budget is not sufficient! Current budget is {budget}$ and the costs are {costs}$!")
-    requested_increase_amount = costs - budget
+    print(f"Budget is not sufficient! Current budget is {budget}$ and the costs are {round(costs,2)}$!")
+    requested_increase_amount = round(costs - budget,2)
     print(f"Submit request to increase the current budget by {requested_increase_amount}$!")
     return {"requestedIncreaseAmount": requested_increase_amount}
 
@@ -73,7 +73,7 @@ def emit_purchase_order(costs: int, requestId: str) -> dict:
     print("--------------------------")
     print("PROCUREMENT DEPARTMENT")
 
-    print(f"Emitting purchase order '{requestId}' totaling {costs}$ to supplier.")
+    print(f"Emitting purchase order '{requestId}' totaling {round(costs,2)}$ to supplier.")
 
 
 # FINANCIAL DEPARTMENT TASKS
@@ -82,7 +82,7 @@ def approve_request(requestedIncreaseAmount: int, budget: int) -> dict:
     print("--------------------------")
     print("FINANCIAL DEPARTMENT")
 
-    budget = budget + requestedIncreaseAmount
+    budget = round(budget + requestedIncreaseAmount,2)
     print(f"Budget increase of {requestedIncreaseAmount}$ is approved.")
     print(f"New budget is: {budget}$.")
     return {"budget": budget}

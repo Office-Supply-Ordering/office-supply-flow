@@ -79,10 +79,10 @@ def emit_purchase_order(requestedIncreaseAmount: int, budget: int) -> dict:
 def approve_request(requestedIncreaseAmount: int, budget: int) -> dict:
     print("--------------------------")
     print("FINANCIAL DEPARTMENT")
-
+    budget = budget + requestedIncreaseAmount
     print(f"Budget increase of {requestedIncreaseAmount} is approved.")
-    print(f"New budget is: {budget + requestedIncreaseAmount}.")
-    return {"output": f"New budget is: {budget + requestedIncreaseAmount}."}
+    print(f"New budget is: {budget}.")
+    return {"output": f"New budget is: {budget}."}
 
 
 @worker.task(task_type="reject_request", exception_handler=on_error)

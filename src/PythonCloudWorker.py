@@ -4,7 +4,7 @@ import random
 import re
 import string
 
-from pyzeebe import ZeebeWorker, Job, create_camunda_cloud_channel
+from pyzeebe import ZeebeWorker, Job, create_camunda_cloud_channel, ZeebeClient
 
 # IMPORTANT:
 # 
@@ -36,6 +36,7 @@ assert camundacloud_cluster_id
 channel = create_camunda_cloud_channel(client_id=zeebe_client_id, client_secret=zeebe_client_secret,
                                        cluster_id=camundacloud_cluster_id, region=camunda_region)
 worker = ZeebeWorker(channel)  # Create a zeebe worker
+client = ZeebeClient(channel)  # Create a zeebe client
 
 
 async def on_error(exception: Exception, job: Job):
@@ -45,11 +46,12 @@ async def on_error(exception: Exception, job: Job):
 
 # OTHER DEPARTMENT TASKS
 @worker.task(task_type="send_request_to_procurement_department", exception_handler=on_error)
-def send_request_to_procurement_department(department: str) -> dict:
+async def send_request_to_procurement_department(department: str) -> dict:
     print("--------------------------")
     print(f"{department.upper()}")
 
     request_id = generate_request_id()
+    await client.publish_message(name="purchase_request", correlation_key=request_id)
     print(f"Sending procurement request '{request_id}' to Procurement Department.")
     return {"requestId": request_id}
 
@@ -60,18 +62,18 @@ def submit_budget_increase_request(budget: int, costs: int) -> dict:
     print("--------------------------")
     print("PROCUREMENT DEPARTMENT")
 
-    print(f"Budget is not sufficient! Current budget is {budget} and the costs are {costs}!")
+    print(f"Budget is not sufficient! Current budget is {budget}$ and the costs are {costs}$!")
     requested_increase_amount = costs - budget
-    print(f"Submit request to increase the current budget by {requested_increase_amount}!")
+    print(f"Submit request to increase the current budget by {requested_increase_amount}$!")
     return {"requestedIncreaseAmount": requested_increase_amount}
 
+
 @worker.task(task_type="emit_purchase_order", exception_handler=on_error)
-def emit_purchase_order(requestId: str) -> dict:
+def emit_purchase_order(costs: int, requestId: str) -> dict:
     print("--------------------------")
     print("PROCUREMENT DEPARTMENT")
 
-    print(f"Emitting purchase order {requestId} to supplier.")
-    return {"output": f"Purchase order is emitted."}
+    print(f"Emitting purchase order '{requestId}' totaling {costs}$ to supplier.")
 
 
 # FINANCIAL DEPARTMENT TASKS
@@ -79,10 +81,11 @@ def emit_purchase_order(requestId: str) -> dict:
 def approve_request(requestedIncreaseAmount: int, budget: int) -> dict:
     print("--------------------------")
     print("FINANCIAL DEPARTMENT")
+
     budget = budget + requestedIncreaseAmount
-    print(f"Budget increase of {requestedIncreaseAmount} is approved.")
-    print(f"New budget is: {budget}.")
-    return {"output": f"New budget is: {budget}."}
+    print(f"Budget increase of {requestedIncreaseAmount}$ is approved.")
+    print(f"New budget is: {budget}$.")
+    return {"budget": budget}
 
 
 @worker.task(task_type="reject_request", exception_handler=on_error)
@@ -90,9 +93,8 @@ def reject_request(requestedIncreaseAmount: int, budget: int) -> dict:
     print("--------------------------")
     print("FINANCIAL DEPARTMENT")
 
-    print(f"Budget increase by {requestedIncreaseAmount} is not approved.")
-    print(f"Budget stays at old amount of {budget}.")
-    return {"output": f"Budget stays at old amount of {budget}."}
+    print(f"Budget increase by {requestedIncreaseAmount}$ is not approved.")
+    print(f"Budget stays at old amount of {budget}$.")
 
 
 def generate_request_id() -> str:

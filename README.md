@@ -34,3 +34,7 @@ export ZEEBE_AUTHORIZATION_SERVER_URL='https://login.cloud.camunda.io/oauth/toke
     ```
 
 - Once the process is started and the python client is running, you get an output on the console for each task.
+
+## Process Model
+
+A running example of the process is available in the ‘Process Model’ directory of our GitHub repository. This directory also includes our BPMN model, along with all forms and DMN diagrams.

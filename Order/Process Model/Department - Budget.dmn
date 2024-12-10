@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="budget_jjkjk" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="0d4ab51" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <decision id="budget_per_department" name="Department - Budget">
+    <informationRequirement id="InformationRequirement_1gcnndy">
+      <requiredInput href="#InputData_1fgftu2" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0tjethl">
+      <input id="Input_1" label="Department" biodi:width="192">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>department</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_1t01hgv">
+          <text>"IT","HR","Marketing","Finance","Sales","Operations"</text>
+        </inputValues>
+      </input>
+      <output id="Output_1" label="Available Budget" name="budget" typeRef="number" />
+      <rule id="DecisionRule_0oo2ep7">
+        <inputEntry id="UnaryTests_11ghygv">
+          <text>"HR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1cjcfr0">
+          <text>1000</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0zqy5tz">
+        <inputEntry id="UnaryTests_0b6vp5x">
+          <text>"Marketing"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1f7igbu">
+          <text>5000</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0f7o426">
+        <inputEntry id="UnaryTests_1bhgbk7">
+          <text>"Finance"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0o4qy42">
+          <text>300</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1h8kunr">
+        <inputEntry id="UnaryTests_0t0b6vn">
+          <text>"Sales"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_06u45fv">
+          <text>2500</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0pn2j3s">
+        <inputEntry id="UnaryTests_0ge22js">
+          <text>"Operations"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1j0enb8">
+          <text>398</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1e9vs1k">
+        <inputEntry id="UnaryTests_0jtu511">
+          <text>"IT"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_194y0qt">
+          <text>100</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_1fgftu2" name="Department" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="budget_per_department">
+        <dc:Bounds height="80" width="180" x="160" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0ppi0fw" dmnElementRef="InputData_1fgftu2">
+        <dc:Bounds height="45" width="125" x="157" y="227" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_003m7tb" dmnElementRef="InformationRequirement_1gcnndy">
+        <di:waypoint x="220" y="227" />
+        <di:waypoint x="250" y="180" />
+        <di:waypoint x="250" y="160" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

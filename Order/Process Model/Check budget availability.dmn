@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_0tvf4f3" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="0d4ab51" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <decision id="check-budget-availability-1f4vlfg" name="Check budget availability">
+    <informationRequirement id="InformationRequirement_08n9ksg">
+      <requiredInput href="#costs" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0h0jczx">
+      <requiredInput href="#budget" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1qqdj2l">
+      <input id="Input_1" biodi:width="192">
+        <inputExpression id="InputExpression_1" typeRef="Any">
+          <text>costs</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="budgetAvailable" typeRef="boolean" />
+      <rule id="DecisionRule_1qnzm23">
+        <description>enough budget</description>
+        <inputEntry id="UnaryTests_1hrczv8">
+          <text>&lt;=budget</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0qau5lh">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ekub3k">
+        <description>not enough budget</description>
+        <inputEntry id="UnaryTests_1hiy2yo">
+          <text>&gt;budget</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0dwo6xd">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="costs" name="costs" />
+  <inputData id="budget" name="budget" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="check-budget-availability-1f4vlfg">
+        <dc:Bounds height="80" width="180" x="200" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1k4rmsr" dmnElementRef="costs">
+        <dc:Bounds height="45" width="125" x="138" y="278" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_11uxlg9" dmnElementRef="budget">
+        <dc:Bounds height="45" width="125" x="307" y="278" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0m4408l" dmnElementRef="InformationRequirement_08n9ksg">
+        <di:waypoint x="201" y="278" />
+        <di:waypoint x="260" y="180" />
+        <di:waypoint x="260" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1xyhe20" dmnElementRef="InformationRequirement_0h0jczx">
+        <di:waypoint x="370" y="278" />
+        <di:waypoint x="320" y="180" />
+        <di:waypoint x="320" y="160" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

@@ -1,0 +1,99 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.6.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "0d4ab51"
+  },
+  "schemaVersion": 17,
+  "id": "Form_06h5yqv",
+  "components": [
+    {
+      "text": "### Purchase Request Details",
+      "type": "text",
+      "id": "Heading_0",
+      "layout": {
+        "row": "row_0",
+        "columns": null
+      }
+    },
+    {
+      "text": "##### Item Details",
+      "type": "text",
+      "id": "Subheading_1",
+      "layout": {
+        "row": "row_1",
+        "columns": null
+      }
+    },
+    {
+      "label": "Description of the Item",
+      "type": "textarea",
+      "id": "Textarea_2",
+      "validate": {
+        "minLength": 10,
+        "maxLength": 500,
+        "required": true
+      },
+      "key": "itemDescription",
+      "layout": {
+        "row": "row_2",
+        "columns": null
+      }
+    },
+    {
+      "label": "Quantity of the Item",
+      "type": "number",
+      "id": "Number_3",
+      "decimalDigits": 0,
+      "defaultValue": 1,
+      "validate": {
+        "min": 1,
+        "max": 1000,
+        "step": 1,
+        "required": true
+      },
+      "key": "itemQuantity",
+      "layout": {
+        "row": "row_2",
+        "columns": null
+      }
+    },
+    {
+      "label": "Price per Item",
+      "type": "number",
+      "disabled": true,
+      "id": "Number_4",
+      "decimalDigits": 2,
+      "defaultValue": 100,
+      "validate": {
+        "min": 1,
+        "max": 1000,
+        "step": 0.5,
+        "required": false
+      },
+      "key": "pricePerItem",
+      "layout": {
+        "row": "row_2",
+        "columns": null
+      }
+    },
+    {
+      "label": "Additional Notes for the Item",
+      "type": "textarea",
+      "id": "Textarea_5",
+      "validate": {
+        "minLength": 0,
+        "maxLength": 200,
+        "required": false
+      },
+      "key": "additionalNotes",
+      "layout": {
+        "row": "row_3",
+        "columns": null
+      }
+    }
+  ],
+  "generated": true,
+  "type": "default"
+}

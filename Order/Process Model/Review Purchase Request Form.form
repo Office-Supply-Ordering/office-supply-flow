@@ -1,0 +1,330 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.6.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "0d4ab51"
+  },
+  "schemaVersion": 17,
+  "id": "Form_qk2dany",
+  "components": [
+    {
+      "text": "### Purchase Request (Review)",
+      "type": "text",
+      "id": "Heading_0",
+      "layout": {
+        "row": "row_0",
+        "columns": null
+      }
+    },
+    {
+      "label": "RequestID",
+      "type": "textfield",
+      "layout": {
+        "row": "row_0",
+        "columns": null
+      },
+      "id": "Field_1g2r0sy",
+      "key": "requestId",
+      "description": "Enter request ID",
+      "disabled": false,
+      "readonly": true,
+      "properties": { },
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "text": "##### Requestor's Details Section",
+      "type": "text",
+      "id": "Subheading_1",
+      "layout": {
+        "row": "row_1",
+        "columns": null
+      }
+    },
+    {
+      "label": "Department",
+      "type": "textfield",
+      "id": "Textfield_3",
+      "validate": {
+        "minLength": 2,
+        "maxLength": 50,
+        "required": true
+      },
+      "key": "department",
+      "description": "Enter your department",
+      "layout": {
+        "row": "row_2",
+        "columns": null
+      },
+      "readonly": true
+    },
+    {
+      "label": "Contact E-Mail Address",
+      "type": "textfield",
+      "id": "Textfield_4",
+      "validate": {
+        "required": true,
+        "validationType": "email"
+      },
+      "key": "contactInfo",
+      "description": "Enter your e-mail address",
+      "layout": {
+        "row": "row_2",
+        "columns": null
+      },
+      "readonly": true
+    },
+    {
+      "text": "##### Items Requested Section",
+      "type": "text",
+      "id": "Subheading_5",
+      "layout": {
+        "row": "row_3",
+        "columns": null
+      }
+    },
+    {
+      "label": "Item 1 Description",
+      "type": "textfield",
+      "id": "Textfield_6",
+      "validate": {
+        "minLength": 5,
+        "maxLength": 100,
+        "required": true
+      },
+      "key": "item1Description",
+      "description": "Enter description for item 1",
+      "layout": {
+        "row": "row_4",
+        "columns": null
+      },
+      "readonly": true
+    },
+    {
+      "label": "Item 1 Quantity",
+      "type": "number",
+      "id": "Number_7",
+      "decimalDigits": 0,
+      "defaultValue": 1,
+      "validate": {
+        "max": 1000,
+        "step": 1,
+        "required": true,
+        "min": 1
+      },
+      "key": "item1Quantity",
+      "description": "Enter quantity for item 1",
+      "layout": {
+        "row": "row_4",
+        "columns": null
+      },
+      "readonly": true
+    },
+    {
+      "label": "Item 1 Price",
+      "type": "number",
+      "layout": {
+        "row": "row_4",
+        "columns": null
+      },
+      "id": "Field_1cyqvs6",
+      "key": "price1",
+      "description": "Enter price for item 1 (per unit)",
+      "validate": {
+        "required": true
+      },
+      "decimalDigits": 2,
+      "defaultValue": 0
+    },
+    {
+      "label": "Item 2 Description",
+      "type": "textfield",
+      "id": "Textfield_8",
+      "validate": {
+        "minLength": 5,
+        "maxLength": 100,
+        "required": false
+      },
+      "key": "item2Description",
+      "description": "Enter description for item 2",
+      "layout": {
+        "row": "row_5",
+        "columns": null
+      },
+      "readonly": true,
+      "conditional": {
+        "hide": "=number_sbfvxi < 2"
+      }
+    },
+    {
+      "label": "Item 2 Quantity",
+      "type": "number",
+      "id": "Number_9",
+      "validate": {
+        "min": 0,
+        "max": 1000,
+        "step": 1,
+        "required": false
+      },
+      "key": "item2Quantity",
+      "description": "Enter quantity for item 2",
+      "layout": {
+        "row": "row_5",
+        "columns": null
+      },
+      "readonly": true,
+      "conditional": {
+        "hide": "=number_sbfvxi < 2"
+      },
+      "defaultValue": 1
+    },
+    {
+      "label": "Item 2 Price",
+      "type": "number",
+      "layout": {
+        "row": "row_5",
+        "columns": null
+      },
+      "id": "Field_0v22lov",
+      "key": "price2",
+      "description": "Enter price for item 2 (per unit)",
+      "decimalDigits": 2,
+      "conditional": {
+        "hide": "=number_sbfvxi < 2"
+      },
+      "defaultValue": 0
+    },
+    {
+      "label": "Item 3 Description",
+      "type": "textfield",
+      "id": "Textfield_10",
+      "validate": {
+        "minLength": 5,
+        "maxLength": 100,
+        "required": false
+      },
+      "key": "item3Description",
+      "description": "Enter description for item 3",
+      "layout": {
+        "row": "row_6",
+        "columns": null
+      },
+      "readonly": true,
+      "conditional": {
+        "hide": "=number_sbfvxi < 3"
+      }
+    },
+    {
+      "label": "Item 3 Quantity",
+      "type": "number",
+      "id": "Number_11",
+      "validate": {
+        "min": 0,
+        "max": 1000,
+        "step": 1,
+        "required": false
+      },
+      "key": "item3Quantity",
+      "description": "Enter quantity for item 3",
+      "layout": {
+        "row": "row_6",
+        "columns": null
+      },
+      "readonly": true,
+      "conditional": {
+        "hide": "=number_sbfvxi < 3"
+      },
+      "defaultValue": 1
+    },
+    {
+      "label": "Item 3 Price",
+      "type": "number",
+      "layout": {
+        "row": "row_6",
+        "columns": null
+      },
+      "id": "Field_0qmi2wx",
+      "key": "price3",
+      "description": "Enter price for item 3 (per unit)",
+      "decimalDigits": 2,
+      "conditional": {
+        "hide": "=number_sbfvxi < 3"
+      },
+      "defaultValue": 0
+    },
+    {
+      "label": "Item 4 Description",
+      "type": "textfield",
+      "id": "Textfield_12",
+      "validate": {
+        "minLength": 5,
+        "maxLength": 100,
+        "required": false
+      },
+      "key": "item4Description",
+      "description": "Enter description for item 4",
+      "layout": {
+        "row": "row_7",
+        "columns": null
+      },
+      "readonly": true,
+      "conditional": {
+        "hide": "=number_sbfvxi < 4"
+      }
+    },
+    {
+      "label": "Item 4 Quantity",
+      "type": "number",
+      "id": "Number_13",
+      "validate": {
+        "min": 0,
+        "max": 1000,
+        "step": 1,
+        "required": false
+      },
+      "key": "item4Quantity",
+      "description": "Enter quantity for item 4",
+      "layout": {
+        "row": "row_7",
+        "columns": null
+      },
+      "readonly": true,
+      "conditional": {
+        "hide": "=number_sbfvxi < 4"
+      },
+      "defaultValue": 1
+    },
+    {
+      "label": "Item 4 Price",
+      "type": "number",
+      "layout": {
+        "row": "row_7",
+        "columns": null
+      },
+      "id": "Field_0gg907z",
+      "key": "price4",
+      "description": "Enter price for item 4 (per unit)",
+      "decimalDigits": 2,
+      "conditional": {
+        "hide": "=number_sbfvxi < 4"
+      },
+      "defaultValue": 0
+    },
+    {
+      "computeOn": "presubmit",
+      "type": "expression",
+      "layout": {
+        "row": "Row_0ybbrcq",
+        "columns": null
+      },
+      "id": "Field_15e9z72",
+      "key": "costs",
+      "expression": "=(if price1 = null or item1Quantity = null then 0 else price1 * item1Quantity) +\n(if price2 = null or item2Quantity = null then 0 else price2 * item2Quantity) +\n(if price3 = null or item3Quantity = null then 0 else price3 * item3Quantity) +\n(if price4 = null or item4Quantity = null then 0 else price4 * item4Quantity)",
+      "properties": { }
+    }
+  ],
+  "generated": true,
+  "type": "default"
+}

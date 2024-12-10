@@ -1,0 +1,337 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.6.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "eeecb96"
+  },
+  "schemaVersion": 17,
+  "id": "purchase-request-form",
+  "components": [
+    {
+      "text": "### Purchase Request",
+      "type": "text",
+      "id": "Heading_0",
+      "layout": {
+        "row": "row_0",
+        "columns": null
+      }
+    },
+    {
+      "text": "##### Requestor's Details Section",
+      "type": "text",
+      "id": "Subheading_1",
+      "layout": {
+        "row": "row_1",
+        "columns": null
+      }
+    },
+    {
+      "label": "Department",
+      "values": [
+        {
+          "label": "HR",
+          "value": "HR"
+        },
+        {
+          "label": "IT",
+          "value": "IT"
+        },
+        {
+          "label": "Sales",
+          "value": "Sales"
+        },
+        {
+          "label": "Operations",
+          "value": "Operations"
+        },
+        {
+          "label": "Finance",
+          "value": "Finance"
+        },
+        {
+          "label": "Marketing",
+          "value": "Marketing"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "row_2",
+        "columns": null
+      },
+      "id": "Field_1vtdjh8",
+      "key": "department",
+      "validate": {
+        "required": true
+      },
+      "searchable": true
+    },
+    {
+      "label": "Contact E-Mail Address",
+      "type": "textfield",
+      "id": "Textfield_4",
+      "validate": {
+        "required": true,
+        "validationType": "email"
+      },
+      "key": "contactInfo",
+      "description": "Enter your e-mail address",
+      "layout": {
+        "row": "row_2",
+        "columns": null
+      }
+    },
+    {
+      "text": "##### Items Requested Section",
+      "type": "text",
+      "id": "Subheading_5",
+      "layout": {
+        "row": "row_3",
+        "columns": null
+      }
+    },
+    {
+      "label": "Number of requested Categories ",
+      "type": "number",
+      "layout": {
+        "row": "row_3",
+        "columns": null
+      },
+      "id": "Field_0c8quex",
+      "key": "number_sbfvxi",
+      "defaultValue": 1,
+      "validate": {
+        "required": true,
+        "min": 1,
+        "max": 4
+      }
+    },
+    {
+      "label": "Item 1 Description",
+      "type": "textfield",
+      "id": "Textfield_6",
+      "validate": {
+        "minLength": 5,
+        "maxLength": 100,
+        "required": true
+      },
+      "key": "item1Description",
+      "description": "Enter description for item 1",
+      "layout": {
+        "row": "row_4",
+        "columns": null
+      }
+    },
+    {
+      "label": "Item 1 Quantity",
+      "type": "number",
+      "id": "Number_7",
+      "decimalDigits": 0,
+      "defaultValue": 1,
+      "validate": {
+        "min": 1,
+        "max": 1000,
+        "step": 1,
+        "required": true
+      },
+      "key": "item1Quantity",
+      "description": "Enter quantity for item 1",
+      "layout": {
+        "row": "row_4",
+        "columns": null
+      }
+    },
+    {
+      "label": "Item 1 Price",
+      "type": "number",
+      "layout": {
+        "row": "row_4",
+        "columns": null
+      },
+      "id": "Field_02saoqw",
+      "key": "price1",
+      "validate": {
+        "required": false
+      },
+      "description": "Enter price for item 1 (per unit)",
+      "readonly": true,
+      "defaultValue": 0,
+      "conditional": {
+        "hide": "=0"
+      }
+    },
+    {
+      "label": "Item 2 Description",
+      "type": "textfield",
+      "id": "Textfield_8",
+      "validate": {
+        "maxLength": 100,
+        "required": false,
+        "minLength": 5
+      },
+      "key": "item2Description",
+      "description": "Enter description for item 2",
+      "layout": {
+        "row": "row_5",
+        "columns": null
+      },
+      "conditional": {
+        "hide": "=number_sbfvxi < 2"
+      }
+    },
+    {
+      "label": "Item 2 Quantity",
+      "type": "number",
+      "id": "Number_9",
+      "decimalDigits": 0,
+      "defaultValue": 1,
+      "validate": {
+        "min": 0,
+        "max": 1000,
+        "step": 1,
+        "required": false
+      },
+      "key": "item2Quantity",
+      "description": "Enter quantity for item 2",
+      "layout": {
+        "row": "row_5",
+        "columns": null
+      },
+      "conditional": {
+        "hide": "=number_sbfvxi < 2"
+      }
+    },
+    {
+      "label": "Item 2 Price",
+      "type": "number",
+      "layout": {
+        "row": "row_5",
+        "columns": null
+      },
+      "id": "Field_06e7v4j",
+      "key": "price2",
+      "description": "Enter price for item 2 (per unit)",
+      "readonly": true,
+      "defaultValue": 0,
+      "conditional": {
+        "hide": "=number_sbfvxi < 2"
+      }
+    },
+    {
+      "label": "Item 3 Description",
+      "type": "textfield",
+      "id": "Textfield_10",
+      "validate": {
+        "minLength": 5,
+        "maxLength": 100,
+        "required": false
+      },
+      "key": "item3Description",
+      "description": "Enter description for item 3",
+      "layout": {
+        "row": "row_6",
+        "columns": null
+      },
+      "conditional": {
+        "hide": "=number_sbfvxi < 3"
+      }
+    },
+    {
+      "label": "Item 3 Quantity",
+      "type": "number",
+      "id": "Number_11",
+      "decimalDigits": 0,
+      "defaultValue": 1,
+      "validate": {
+        "min": 0,
+        "max": 1000,
+        "step": 1,
+        "required": false
+      },
+      "key": "item3Quantity",
+      "description": "Enter quantity for item 3",
+      "layout": {
+        "row": "row_6",
+        "columns": null
+      },
+      "conditional": {
+        "hide": "=number_sbfvxi < 3"
+      }
+    },
+    {
+      "label": "Item 3 Price",
+      "type": "number",
+      "layout": {
+        "row": "row_6",
+        "columns": null
+      },
+      "id": "Field_04ez2sr",
+      "key": "price3",
+      "description": "Enter price for item 3 (per unit)",
+      "readonly": true,
+      "defaultValue": 0,
+      "conditional": {
+        "hide": "=number_sbfvxi < 3"
+      }
+    },
+    {
+      "label": "Item 4 Description",
+      "type": "textfield",
+      "id": "Textfield_12",
+      "validate": {
+        "minLength": 5,
+        "maxLength": 100,
+        "required": false
+      },
+      "key": "item4Description",
+      "description": "Enter description for item 4",
+      "layout": {
+        "row": "row_7",
+        "columns": null
+      },
+      "conditional": {
+        "hide": "=number_sbfvxi < 4"
+      }
+    },
+    {
+      "label": "Item 4 Quantity",
+      "type": "number",
+      "id": "Number_13",
+      "decimalDigits": 0,
+      "validate": {
+        "min": 0,
+        "max": 1000,
+        "step": 1,
+        "required": false
+      },
+      "key": "item4Quantity",
+      "description": "Enter quantity for item 4",
+      "layout": {
+        "row": "row_7",
+        "columns": null
+      },
+      "defaultValue": 1,
+      "conditional": {
+        "hide": "=number_sbfvxi < 4"
+      }
+    },
+    {
+      "label": "Item 4 Price",
+      "type": "number",
+      "layout": {
+        "row": "row_7",
+        "columns": null
+      },
+      "id": "Field_19zbosz",
+      "key": "price4",
+      "description": "Enter price for item 4 (per unit)",
+      "readonly": true,
+      "defaultValue": 0,
+      "conditional": {
+        "hide": "=number_sbfvxi < 4"
+      }
+    }
+  ],
+  "generated": true,
+  "type": "default"
+}

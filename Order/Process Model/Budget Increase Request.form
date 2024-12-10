@@ -1,0 +1,137 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.6.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "eeecb96"
+  },
+  "schemaVersion": 17,
+  "id": "budget-increase-request-0lr5xr7",
+  "components": [
+    {
+      "text": "### Budget Increase Request Form",
+      "type": "text",
+      "id": "Heading_0",
+      "layout": {
+        "row": "row_0",
+        "columns": null
+      }
+    },
+    {
+      "text": "##### Request Details",
+      "type": "text",
+      "id": "Subheading_1",
+      "layout": {
+        "row": "row_1",
+        "columns": null
+      }
+    },
+    {
+      "label": "Department Name",
+      "type": "textfield",
+      "id": "Textfield_2",
+      "validate": {
+        "required": true
+      },
+      "key": "department",
+      "layout": {
+        "row": "row_2",
+        "columns": null
+      },
+      "disabled": false,
+      "readonly": true
+    },
+    {
+      "label": "Contact E-Mail Address",
+      "type": "textfield",
+      "layout": {
+        "row": "row_2",
+        "columns": null
+      },
+      "id": "Field_1mxfe6l",
+      "key": "contactInfo",
+      "description": "Enter your e-mail address",
+      "readonly": true,
+      "validate": {
+        "required": false
+      }
+    },
+    {
+      "text": "##### Budget Details",
+      "type": "text",
+      "id": "Subheading_5",
+      "layout": {
+        "row": "row_4",
+        "columns": null
+      }
+    },
+    {
+      "label": "Current Budget",
+      "type": "number",
+      "id": "Number_6",
+      "validate": {
+        "min": 0,
+        "required": true
+      },
+      "key": "budget",
+      "layout": {
+        "row": "row_5",
+        "columns": null
+      },
+      "appearance": {
+        "prefixAdorner": "$"
+      },
+      "disabled": false,
+      "readonly": true
+    },
+    {
+      "text": "##### Budget Increase Requested:",
+      "type": "text",
+      "layout": {
+        "row": "row_5",
+        "columns": 4
+      },
+      "id": "Field_0j8zwpg"
+    },
+    {
+      "label": "Increase requested",
+      "type": "number",
+      "layout": {
+        "row": "row_5",
+        "columns": null
+      },
+      "id": "Field_11mm8sd",
+      "key": "requestedIncreaseAmount",
+      "appearance": {
+        "prefixAdorner": "$"
+      },
+      "readonly": false,
+      "properties": {
+        "key1": "value"
+      }
+    },
+    {
+      "label": "Is Budget Increase possible?",
+      "values": [
+        {
+          "label": "Yes",
+          "value": "true"
+        },
+        {
+          "label": "No",
+          "value": "false"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_1phqv3s",
+        "columns": null
+      },
+      "id": "Field_0qh68lq",
+      "key": "isBudgetIncreasePossible",
+      "disabled": true
+    }
+  ],
+  "generated": true,
+  "type": "default"
+}
